@@ -19,4 +19,8 @@ public class WashingMachine {
 	void MakeSound() {
 		System.out.println("WRUUMMMMMMMMMMMMMMMMMMMMMMMM\n WRUMMMMMMMMMMMMMMMMMM\nI'm from "+this.year);
 	}
+	
+	void Upgrader() {
+		this.year = Calendar.getInstance().get(Calendar.YEAR);
+	}
 }

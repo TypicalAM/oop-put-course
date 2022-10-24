@@ -2,9 +2,14 @@ package exercises;
 
 public class Exercises {
 	public static void main(String[] args) {
-		new WashingMachine("beko").MakeSound();
-		new WashingMachine("fnaf5machine",1987).MakeSound();
+		WashingMachine beko = new WashingMachine("beko");
+		beko.MakeSound();
 		
+		WashingMachine tester = new WashingMachine("fnaf5machine", 1987);
+		tester.MakeSound();
+		tester.Upgrader();
+		tester.MakeSound();
+
 		CreditCard myCard = new CreditCard(710, 49196213, "09/2026");
 		CreditCard myStolenCard = new CreditCard(123, 2137, "");
 
