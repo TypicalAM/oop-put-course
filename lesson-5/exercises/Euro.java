@@ -16,7 +16,10 @@ public class Euro implements Currency {
 	@Override
 	public Euro subtractedCurrency(float value, String currency) {
 		float newCurrencyValue = value / new FakeCantor().euroToRate(currency);
-		return (this.value - newCurrencyValue < 0) ? new Euro(0) : new Euro(this.value - newCurrencyValue);
+		if (this.value - newCurrencyValue < 0) {
+			throw new NoMoneyException("No money left in this account", null);
+		}
+		return new Euro(this.value - newCurrencyValue);
 	}
 
 	@Override
