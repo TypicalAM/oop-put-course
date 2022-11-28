@@ -16,7 +16,7 @@ public class NumberPair {
 	}
 
 	// Returns the average value of the two provided
-	public int avg() {
+	public float avg() {
 		return (this.a + this.b) / 2;
 	}
 
