@@ -3,7 +3,7 @@
 
 class Operation {
 public:
-    virtual float evaluate() = 0;
+    virtual float Evaluate() = 0;
 };
 
 #endif //CLION_OPERATION_H

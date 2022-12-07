@@ -4,7 +4,7 @@
 
 #include "Subtraction.h"
 
-float Subtraction::evaluate() {
+float Subtraction::Evaluate() {
     return val1 - val2;
 }
 

@@ -8,7 +8,7 @@
 enum State {
     DEFAULT,
     HOVERED,
-    CLICKED,
+    PRESSED,
 };
 
 #endif //CLION_STATE_H

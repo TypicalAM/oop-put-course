@@ -13,7 +13,7 @@ private:
     float val1;
     float val2;
 public:
-    float evaluate() override;
+    float Evaluate() override;
 
     Subtraction(float val1, float val2);
 };

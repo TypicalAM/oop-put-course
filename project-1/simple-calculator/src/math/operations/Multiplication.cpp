@@ -4,7 +4,7 @@
 
 #include "Multiplication.h"
 
-float Multiplication::evaluate() {
+float Multiplication::Evaluate() {
     return val1 * val2;
 }
 

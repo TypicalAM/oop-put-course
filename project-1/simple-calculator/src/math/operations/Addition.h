@@ -12,7 +12,7 @@ private:
     float val1;
     float val2;
 public:
-    float evaluate() override;
+    float Evaluate() override;
 
     Addition(float val1, float val2);
 };

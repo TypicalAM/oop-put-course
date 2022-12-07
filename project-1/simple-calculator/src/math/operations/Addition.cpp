@@ -4,7 +4,7 @@
 
 #include "Addition.h"
 
-float Addition::evaluate() {
+float Addition::Evaluate() {
     return val1 + val2;
 }
 
