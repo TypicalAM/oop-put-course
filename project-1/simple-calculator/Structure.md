@@ -1,4 +1,4 @@
-# Classes structure
+# UI classes structure
 
 ## Screen
 
@@ -6,11 +6,56 @@
 
 ```
 class Screen
-    private []Buttons
+    private []Buttons buttons
+    private Textbox textbox
 
-    public update()
-    public draw()
+    public Update()
+    public Draw()
 ```
+
+## Button
+
+`Button` denotes a visible UI element, which can be clicked with the left mouse button to generate an action. It also has methods to render it on the screen.
+
+```
+class Button
+    private raylib::Rectangle rectangle
+    private string text
+
+    public State state
+    public Render()
+    public Bounds()
+    public TextBox Click()
+    public Button(int xpos, int ypos, bool isBig, string text)
+```
+
+## Textbox
+
+`Textbox` is a text box where the expression is seen by the user. The textbox is manipulated by the `Click()` method of the textbox
+```
+class Textbox
+    private raylib::Rectangle rectangle
+    private string text
+
+    public State state
+    public Render()
+    public Bounds()
+    public Textbox(string text)
+```
+
+# Math classes structure
+
+Parser requirements:
+- Produce an error message if its input is not in the language of this grammar.
+- Produce an AST reflecting the structure of the input, if the input is in the language of the grammar.
+
+Each input in the language will have a single AST based on the following rules:
+
+- Parentheses have precedence over all operators.
+- `^` (exponentiation) has precedence over unary - and the binary operators `/`, `*`, `-`, and `+`
+- `*` and `/` have precedence over unary `-` and binary `-` and `+`.
+- Unary `-` has precedence over binary `-` and `+`.
+- `^` is right associative while all other binary operators are left associative.
 
 ## Operation (interface)
 
@@ -39,59 +84,15 @@ Operations which will be supported by this app:
 - `SquareRoot(Operation)`
 - `Exponation(Operation)`
 
-## Expression
+## Expressions
 
-`Expression` parses and evaluates an expression
+`ExpressionTree` parses and evaluates an expression
 
 ```
-class Expression
+class ExpressionTree
     private string text
 
-    public Expression(string text)
+    public ExpressionTree(string text)
     public float evalutate()
 ```
 
-## Button
-
-`Button` denotes a visible UI element, which can be clicked with the left mouse button to generate an action. It also has methods helping to render it on the screen.
-
-```
-interface Button
-    private raylibRect bounds
-    private string text
-    public State state
-
-    public Button(int xpos, int ypos, bool isBig, string text)
-    public click()
-    public render()
-```
-
-### Supported buttons
-
-- `Division(Button)`
-- `Multiplication(Button)`
-- `Subtraction(Button)`
-- `Addition(Button)`
-- `Clear(Button)`
-- `Reset(Button)`
-- `SquareRoot(Operation)`
-- `BitwiseOR(Button)`
-- `Exponation(Operation)`
-- `BitwiseAND(Button)`
-- `Dot(Button)`
-- `Result(Button)`
-- `OpenParentheses(Button)`
-- `CloseParentheses(Button)`
-
-#### Supported digits
-
-- `Zero(Digit)`
-- `One(Digit)`
-- `Two(Digit)`
-- `Three(Digit)`
-- `Four(Digit)`
-- `Five(Digit)`
-- `Six(Digit)`
-- `Seven(Digit)`
-- `Eight(Digit)`
-- `Nine(Digit)`
