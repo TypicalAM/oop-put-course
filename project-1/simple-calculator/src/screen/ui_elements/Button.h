@@ -1,5 +1,6 @@
 #include "raylib-cpp.hpp"
 #include "../State.h"
+#include "Textbox.h"
 
 #ifndef CLION_BUTTON_H
 #define CLION_BUTTON_H
@@ -12,13 +13,13 @@ private:
 public:
     State state;
 
-    void Click();
-
     void Render();
 
     raylib::Rectangle bounds();
 
     explicit Button(float xPos, float yPos, bool isBig, std::string text);
+
+    Textbox Click(Textbox textbox);
 };
 
 

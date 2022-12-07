@@ -6,22 +6,24 @@
 #include "ui_elements/Button.h"
 
 void Screen::Update() {
-    // Update the variables used in this screen
+    // Update the state of the buttons
     for (auto &button: buttons) {
         // Check if the mouse is in the button
-        if (!raylib::Mouse::GetPosition().CheckCollision(button.bounds())) {
-            // The button has been released,and perform the button action if true
-            if (button.state == PRESSED) { button.Click(); }
-            button.state = DEFAULT;
-        } else {
+        if (raylib::Mouse::GetPosition().CheckCollision(button.bounds())) {
             // Check if the left mouse button is down
-            if (raylib::Mouse::IsButtonDown(90)) {
+            if (raylib::Mouse::IsButtonDown(0)) {
+                if (button.state == HOVERED) { textbox = button.Click(textbox); }
                 button.state = PRESSED;
             } else {
                 button.state = HOVERED;
             }
+        } else {
+            button.state = DEFAULT;
         }
     }
+
+    // Update the state of the textbox
+    textbox.state = raylib::Mouse::GetPosition().CheckCollision(textbox.Bounds()) ? HOVERED : DEFAULT;
 }
 
 void Screen::Draw() {
@@ -36,8 +38,8 @@ void Screen::Draw() {
 
 Screen::Screen() {
     // Initialize the screen variables
-    const std::vector<std::string> buttonTexts = {"÷", "x", "-", "+", "C", "7", "8", "9", "√", "OR", "4", "5", "6",
-                                                  "^", "AND", "1", "2", "3", "=", "(", "0", "0", ".", "=", ")"};
+    const std::vector<std::string> buttonTexts = {"÷", "x", "-", "BACK", "C", "7", "8", "9", "+", "OR", "4", "5", "6",
+                                                  "√", "AND", "1", "2", "3", "^", "(", "0", "0", ".", "=", ")"};
 
     // Initialize all ui_elements and append them to the ui_elements vector
     int counter = 0;

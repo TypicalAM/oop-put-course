@@ -26,4 +26,8 @@ Textbox::Textbox(std::string text) {
     state = DEFAULT;
 }
 
-Textbox::Textbox() {}
+Textbox::Textbox() = default;
+
+std::string Textbox::Text() {
+    return text;
+}

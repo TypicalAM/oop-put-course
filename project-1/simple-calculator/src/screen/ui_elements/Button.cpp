@@ -3,11 +3,33 @@
 //
 
 #include "Button.h"
+#include "Textbox.h"
 
 #include <utility>
 
-void Button::Click() {
-    printf("%s has been clicked!\n", text.c_str());
+Textbox Button::Click(Textbox textbox) {
+    // Evaluate the expression
+    if (text == "=" && textbox.Text().length() > 1) {
+        return Textbox("PARSED_EXPRESSION");
+    }
+
+    // Delete the last character
+    if (text == "BACK") {
+        if (textbox.Text().length() == 0) {
+            return textbox;
+        }
+
+        std::string expressionText = textbox.Text();
+        expressionText.pop_back();
+        return Textbox(expressionText);
+    }
+
+    // Clear the screen
+    if (text == "C") {
+        return Textbox("");
+    }
+
+    return Textbox(textbox.Text().append(text));
 }
 
 void Button::Render() {

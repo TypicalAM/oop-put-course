@@ -12,11 +12,13 @@
 class Textbox {
 private:
     raylib::Rectangle rectangle;
-    std::string text;
 public:
+    std::string text;
     State state;
 
     void Render();
+
+    std::string Text();
 
     raylib::Rectangle Bounds();
 
