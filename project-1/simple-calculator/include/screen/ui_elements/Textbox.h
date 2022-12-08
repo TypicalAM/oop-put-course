@@ -25,6 +25,8 @@ public:
     explicit Textbox(std::string text);
 
     Textbox();
+
+    void Render(bool isError);
 };
 
 

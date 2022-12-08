@@ -4,13 +4,16 @@
 
 #include "../../../include/screen/ui_elements/Textbox.h"
 #include "../../../include/screen/ui_elements/Button.h"
+#include "../../../include/math/expressions/ExpressionTree.h"
+#include "../../../include/math/expressions/ExpressionParseError.h"
 
 #include <utility>
 
 Textbox Button::Click(Textbox textbox) {
     // Evaluate the expression
     if (text == "=" && textbox.Text().length() > 1) {
-        return Textbox("PARSED_EXPRESSION");
+        ExpressionTree tree(textbox.Text());
+        return Textbox(tree.Evaluate());
     }
 
     // Delete the last character
@@ -62,16 +65,16 @@ Button::Button(float xPos, float yPos, bool isBig, std::string text) {
     // Create the bounding box
     if (isBig) {
         // TODO: PREDEFINE SMALL HEIGHT AND HIG HEIGHT
-        this->rectangle = raylib::Rectangle(xPos, yPos, 51, 67);
+        rectangle = raylib::Rectangle(xPos, yPos, 51, 67);
     } else {
-        this->rectangle = raylib::Rectangle(xPos, yPos, 51, 32);
+        rectangle = raylib::Rectangle(xPos, yPos, 51, 32);
     }
 
     // Set the text variable
     this->text = std::move(text);
 
     // Set the state of the button
-    this->state = State::DEFAULT;
+    state = State::DEFAULT;
 }
 
 raylib::Rectangle Button::bounds() {

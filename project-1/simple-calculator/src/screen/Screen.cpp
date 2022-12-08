@@ -3,6 +3,7 @@
 //
 
 #include "../../include/screen/Screen.h"
+#include "../../include/math/expressions/ExpressionParseError.h"
 
 void Screen::Update() {
     // Update the state of the buttons
@@ -10,8 +11,16 @@ void Screen::Update() {
         // Check if the mouse is in the button
         if (raylib::Mouse::GetPosition().CheckCollision(button.bounds())) {
             // Check if the left mouse button is down
-            if (raylib::Mouse::IsButtonDown(0)) {
-                if (button.state == HOVERED) { textbox = button.Click(textbox); }
+            if (raylib::Mouse::IsButtonDown(0) && uiEnabled) {
+                if (button.state == HOVERED) {
+                    try {
+                        textbox = button.Click(textbox);
+                    } catch (ExpressionParseError epe) {
+                        uiEnabled = false;
+                        uiCoolDown = 45;
+                        textbox = Textbox(epe.what());
+                    }
+                }
                 button.state = PRESSED;
             } else {
                 button.state = HOVERED;
@@ -23,6 +32,12 @@ void Screen::Update() {
 
     // Update the state of the textbox
     textbox.state = raylib::Mouse::GetPosition().CheckCollision(textbox.Bounds()) ? HOVERED : DEFAULT;
+
+    // Disable the UI if the textbox gives us an error
+    if (!uiEnabled && !uiCoolDown--) {
+        uiEnabled = true;
+        textbox = Textbox("");
+    }
 }
 
 void Screen::Draw() {
@@ -32,7 +47,7 @@ void Screen::Draw() {
     }
 
     // Draw the textbox
-    textbox.Render();
+    textbox.Render(!uiEnabled);
 }
 
 Screen::Screen() {
@@ -50,6 +65,10 @@ Screen::Screen() {
         }
     }
 
+    // Enable the UI and the UI cooldown in case the user produces a parser error
+    this->uiEnabled = true;
+    this->uiCoolDown = 45;
+
     // Create the textbox
-    this->textbox = Textbox("2+5+10-50");
+    this->textbox = Textbox("2+5*10");
 }

@@ -4,9 +4,13 @@
 
 #include "../../../include/screen/ui_elements/Textbox.h"
 
-void Textbox::Render() {
+void Textbox::Render(bool isError) {
     rectangle.Draw(raylib::Color::Orange());
-    raylib::DrawText(text, 20, 35, 20, raylib::Color::Black());
+    if (isError) {
+        raylib::DrawText(text, 20, 35, 20, raylib::Color::Red());
+    } else {
+        raylib::DrawText(text, 20, 35, 20, raylib::Color::Black());
+    }
 }
 
 raylib::Rectangle Textbox::Bounds() {

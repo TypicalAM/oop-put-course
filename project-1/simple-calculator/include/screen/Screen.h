@@ -13,6 +13,8 @@ class Screen {
 private:
     std::vector<Button> buttons;
     Textbox textbox;
+    bool uiEnabled;
+    int uiCoolDown;
 public:
     void Update();
 

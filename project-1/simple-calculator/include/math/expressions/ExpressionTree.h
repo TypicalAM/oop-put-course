@@ -8,7 +8,12 @@
 
 class ExpressionTree {
 
-    ExpressionTree(std::string);
+public:
+    explicit ExpressionTree(const std::string &);
+
+    std::string Evaluate();
+
+    std::string text;
 };
 
 
