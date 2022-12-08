@@ -1,5 +1,5 @@
 #include "raylib-cpp.hpp"
-#include "screen/Screen.h"
+#include "../include/screen/Screen.h"
 
 int main() {
     raylib::Window window(315, 330, "Core window");

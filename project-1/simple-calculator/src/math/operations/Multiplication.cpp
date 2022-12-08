@@ -2,7 +2,7 @@
 // Created by adam on 12/6/22.
 //
 
-#include "Multiplication.h"
+#include "../../../include/math/operations/Multiplication.h"
 
 float Multiplication::Evaluate() {
     return val1 * val2;

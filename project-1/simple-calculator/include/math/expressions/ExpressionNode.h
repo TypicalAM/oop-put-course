@@ -8,6 +8,7 @@
 
 class ExpressionNode {
 
+    ExpressionNode(std::string);
 };
 
 

@@ -2,8 +2,8 @@
 // Created by adam on 12/6/22.
 //
 
-#include "Button.h"
-#include "Textbox.h"
+#include "../../../include/screen/ui_elements/Textbox.h"
+#include "../../../include/screen/ui_elements/Button.h"
 
 #include <utility>
 

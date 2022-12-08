@@ -2,7 +2,7 @@
 // Created by adam on 12/6/22.
 //
 
-#include "Subtraction.h"
+#include "../../../include/math/operations/Subtraction.h"
 
 float Subtraction::Evaluate() {
     return val1 - val2;

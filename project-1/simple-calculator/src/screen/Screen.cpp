@@ -2,8 +2,7 @@
 // Created by adam on 12/6/22.
 //
 
-#include "Screen.h"
-#include "ui_elements/Button.h"
+#include "../../include/screen/Screen.h"
 
 void Screen::Update() {
     // Update the state of the buttons

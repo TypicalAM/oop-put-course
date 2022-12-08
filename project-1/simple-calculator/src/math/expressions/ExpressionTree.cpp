@@ -3,7 +3,7 @@
 //
 
 #include <string>
-#include "ExpressionTree.h"
+#include "../../../include/math/expressions/ExpressionTree.h"
 
 ExpressionTree::ExpressionTree(std::string) {
 
