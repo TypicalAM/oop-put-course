@@ -12,8 +12,8 @@
 class Textbox {
 private:
     raylib::Rectangle rectangle;
-public:
     std::string text;
+public:
     State state;
 
     void Render();

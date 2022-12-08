@@ -28,7 +28,7 @@ if (NOT raylib_cpp_FOUND)
 endif ()
 
 # This is the main part:
-set(SOURCES Main.cpp math/Operation.h math/operations/Addition.cpp math/operations/Addition.h screen/State.h screen/ui_elements/Button.cpp screen/ui_elements/Button.h screen/Screen.cpp screen/Screen.h math/operations/Subtraction.cpp math/operations/Subtraction.h math/operations/Multiplication.cpp math/operations/Multiplication.h screen/ui_elements/Textbox.cpp screen/ui_elements/Textbox.h)
+set(SOURCES Main.cpp math/Operation.h math/operations/Addition.cpp math/operations/Addition.h screen/State.h screen/ui_elements/Button.cpp screen/ui_elements/Button.h screen/Screen.cpp screen/Screen.h math/operations/Subtraction.cpp math/operations/Subtraction.h math/operations/Multiplication.cpp math/operations/Multiplication.h screen/ui_elements/Textbox.cpp screen/ui_elements/Textbox.h math/expressions/ExpressionTree.cpp math/expressions/ExpressionTree.h math/expressions/ExpressionNode.cpp math/expressions/ExpressionNode.h)
 add_executable(${PROJECT_NAME} ${SOURCES})
 set_target_properties(${PROJECT_NAME} PROPERTIES CXX_STANDARD 11)
 target_link_libraries(${PROJECT_NAME} PUBLIC raylib raylib_cpp)
