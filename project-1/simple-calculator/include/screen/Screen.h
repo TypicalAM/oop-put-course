@@ -9,6 +9,7 @@
 #include <vector>
 #include "ui_elements/Textbox.h"
 #include "ui_elements/Button.h"
+#include "../math/expressions/ExpressionTokens.h"
 
 const float fontSize = 16.0f;
 const float smallButtonHeight = 32;
@@ -20,6 +21,7 @@ private:
     Textbox textbox;
     bool uiEnabled;
     int uiCoolDown;
+    ExpressionTokens expr;
 public:
     void Update();
 

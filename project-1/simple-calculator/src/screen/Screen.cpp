@@ -5,6 +5,7 @@
 #include <iostream>
 #include "../../include/screen/Screen.h"
 #include "../../include/math/expressions/ExpressionParseError.h"
+#include "../../include/math/expressions/ExpressionTokens.h"
 
 void Screen::Update() {
     // Update the state of the buttons
@@ -38,6 +39,14 @@ void Screen::Update() {
     if (!uiEnabled && !uiCoolDown--) {
         uiEnabled = true;
         textbox = Textbox("");
+    }
+
+    // Check for keyboard input
+    if (char c = GetKeyPressed()) {
+        if (expr.IsToken(c)) textbox = Textbox(textbox.Text().append(std::string(1, c)));
+        if (int(c) == 61) textbox = textbox.EqualsSign();
+        if (int(c) == 3) textbox = textbox.Backspace();
+        if (int(c) == 67) textbox = textbox.C();
     }
 }
 

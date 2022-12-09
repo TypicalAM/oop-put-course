@@ -4,32 +4,19 @@
 
 #include "../../../include/screen/ui_elements/Textbox.h"
 #include "../../../include/screen/ui_elements/Button.h"
-#include "../../../include/math/expressions/ExpressionParser.h"
 #include "../../../include/screen/Screen.h"
 
 #include <utility>
 
 Textbox Button::Click(Textbox textbox) {
     // Evaluate the expression
-    if (text == "=" && textbox.Text().length() > 1) {
-        return Textbox(ExpressionParser(textbox.Text()).RPN());
-    }
+    if (text == "=") return textbox.EqualsSign();
 
     // Delete the last character
-    if (text == "BACK") {
-        if (textbox.Text().length() == 0) {
-            return textbox;
-        }
-
-        std::string expressionText = textbox.Text();
-        expressionText.pop_back();
-        return Textbox(expressionText);
-    }
+    if (text == "BACK") return textbox.Backspace();
 
     // Clear the screen
-    if (text == "C") {
-        return Textbox("");
-    }
+    if (text == "C") return textbox.C();
 
     return Textbox(textbox.Text().append(text));
 }

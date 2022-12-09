@@ -12,6 +12,7 @@ enum Associativity {
 };
 
 class OperatorToken {
+private:
     int precedence;
     std::string symbol;
     Associativity associativity;

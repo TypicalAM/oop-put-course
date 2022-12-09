@@ -21,6 +21,12 @@ public:
 
     Rectangle Bounds();
 
+    Textbox Backspace();
+
+    Textbox C();
+
+    Textbox EqualsSign();
+
     Textbox();
 
     void Render(bool isError);
