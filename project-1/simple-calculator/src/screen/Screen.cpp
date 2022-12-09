@@ -70,5 +70,5 @@ Screen::Screen() {
     this->uiCoolDown = 45;
 
     // Create the textbox
-    this->textbox = Textbox("2+5*10");
+    this->textbox = Textbox("2+5x10");
 }

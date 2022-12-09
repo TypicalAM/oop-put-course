@@ -4,16 +4,15 @@
 
 #include "../../../include/screen/ui_elements/Textbox.h"
 #include "../../../include/screen/ui_elements/Button.h"
-#include "../../../include/math/expressions/ExpressionTree.h"
 #include "../../../include/math/expressions/ExpressionParseError.h"
+#include "../../../include/math/expressions/ExpressionParser.h"
 
 #include <utility>
 
 Textbox Button::Click(Textbox textbox) {
     // Evaluate the expression
     if (text == "=" && textbox.Text().length() > 1) {
-        ExpressionTree tree(textbox.Text());
-        return Textbox(tree.Evaluate());
+        return Textbox(ExpressionParser(textbox.Text()).RPN());
     }
 
     // Delete the last character

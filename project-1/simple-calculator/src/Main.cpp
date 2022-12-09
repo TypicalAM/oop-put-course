@@ -1,5 +1,8 @@
+#include <iostream>
 #include "raylib-cpp.hpp"
 #include "../include/screen/Screen.h"
+#include "../include/math/expressions/ExpressionParseError.h"
+#include "../include/math/expressions/ExpressionParser.h"
 
 int main() {
     raylib::Window window(315, 330, "Core window");
