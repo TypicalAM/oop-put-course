@@ -49,8 +49,18 @@ std::string ExpressionParser::RPN() {
 }
 
 ExpressionParser::ExpressionParser(const std::string& text) {
-    // Parse the text into a tokens vector
+    // Set the text variable
     this->text = text;
-    // TODO: Support floats and numbers instead of digits
-    for (char c: text) tokens.emplace_back(1, c);
+
+    // Split the text by mathematical symbols
+    // TODO: A better way to aggregate symbols
+    std::size_t prev = 0, pos;
+    while ((pos = text.find_first_of("+-/*%^", prev)) != std::string::npos) {
+        if (pos > prev) {
+            tokens.push_back(text.substr(prev, pos-prev));
+            tokens.emplace_back(1, text[pos]);
+        }
+        prev = pos+1;
+    }
+    if (prev < text.length()) tokens.push_back(text.substr(prev, std::string::npos));
 }
