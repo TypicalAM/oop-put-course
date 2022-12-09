@@ -10,6 +10,10 @@
 #include "ui_elements/Textbox.h"
 #include "ui_elements/Button.h"
 
+const float fontSize = 16.0f;
+const float smallButtonHeight = 32;
+const float bigButtonHeight = 67;
+
 class Screen {
 private:
     std::vector<Button> buttons;
@@ -22,7 +26,6 @@ public:
     void Draw();
 
     Screen();
-
 };
 
 

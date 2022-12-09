@@ -14,7 +14,7 @@ Associativity OperatorToken::Association() {
     return associativity;
 }
 
-int OperatorToken::Compare(const OperatorToken& op) const {
+int OperatorToken::Compare(const OperatorToken &op) const {
     return precedence - op.precedence;
 }
 

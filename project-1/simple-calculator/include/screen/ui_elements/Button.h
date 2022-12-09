@@ -8,7 +8,7 @@
 
 class Button {
 private:
-    Rectangle rectangle;
+    Rectangle rectangle{};
     std::string text;
 public:
     State state;
@@ -17,9 +17,9 @@ public:
 
     Rectangle bounds();
 
-    explicit Button(float xPos, float yPos, bool isBig, std::string text);
-
     Textbox Click(Textbox textbox);
+
+    explicit Button(float xPos, float yPos, bool isBig, std::string text);
 };
 
 

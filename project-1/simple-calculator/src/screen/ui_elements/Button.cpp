@@ -4,8 +4,8 @@
 
 #include "../../../include/screen/ui_elements/Textbox.h"
 #include "../../../include/screen/ui_elements/Button.h"
-#include "../../../include/math/expressions/ExpressionParseError.h"
 #include "../../../include/math/expressions/ExpressionParser.h"
+#include "../../../include/screen/Screen.h"
 
 #include <utility>
 
@@ -51,26 +51,20 @@ void Button::Render() {
         }
     }
 
-
     // Calculate the xPos and yPos of the text, so that it can be in the middle
-    int xPos = rectangle.x + rectangle.width / 2 - MeasureText(text.c_str(), 16) / 2; // TODO: Define fontsize
-    int yPos = rectangle.y + rectangle.height / 2 - 16 / 2;
+    int xPos = rectangle.x + rectangle.width / 2 - MeasureText(text.c_str(), fontSize) / 2;
+    int yPos = rectangle.y + rectangle.height / 2 - fontSize / 2;
 
     // Draw the button text in the middle of the button
     DrawText(text.c_str(), xPos, yPos, 16, BLACK);
 }
 
 Button::Button(float xPos, float yPos, bool isBig, std::string text) {
-    // Create the bounding box
-    if (isBig) {
-        // TODO: PREDEFINE SMALL HEIGHT AND HIG HEIGHT
-        rectangle = Rectangle {xPos, yPos, 51, 67 };
-    } else {
-        rectangle = Rectangle {xPos, yPos, 51, 32 };
-    }
-
     // Set the text variable
     this->text = std::move(text);
+
+    // Create the bounding box
+    rectangle = Rectangle{xPos, yPos, 51, ((isBig) ? bigButtonHeight : smallButtonHeight)};
 
     // Set the state of the button
     state = State::DEFAULT;

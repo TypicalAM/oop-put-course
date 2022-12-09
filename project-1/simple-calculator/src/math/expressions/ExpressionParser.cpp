@@ -13,12 +13,13 @@ std::string ExpressionParser::RPN() {
 
     ExpressionTokens expr;
 
-    for (std::string token:tokens) {
+    for (std::string token: tokens) {
         if (expr.IsOperator(token)) {
             while (!stack.empty() && expr.IsOperator(stack.top())) {
                 OperatorToken c0p = expr.FromString(token);
                 OperatorToken c1p = expr.FromString(stack.top());
-                if ((c0p.Association() == LEFT && c0p.Compare(c1p) <= 0) || (c0p.Association() == RIGHT && c0p.Compare(c1p) < 0)) {
+                if ((c0p.Association() == LEFT && c0p.Compare(c1p) <= 0) ||
+                    (c0p.Association() == RIGHT && c0p.Compare(c1p) < 0)) {
                     result.append(stack.top());
                     stack.pop();
                     continue;
@@ -48,19 +49,18 @@ std::string ExpressionParser::RPN() {
     return result;
 }
 
-ExpressionParser::ExpressionParser(const std::string& text) {
+ExpressionParser::ExpressionParser(const std::string &text) {
     // Set the text variable
     this->text = text;
 
     // Split the text by mathematical symbols
-    // TODO: A better way to aggregate symbols
     std::size_t prev = 0, pos;
-    while ((pos = text.find_first_of("+-/*%^", prev)) != std::string::npos) {
+    while ((pos = text.find_first_of(ExpressionTokens().AllSymbols(), prev)) != std::string::npos) {
         if (pos > prev) {
-            tokens.push_back(text.substr(prev, pos-prev));
+            tokens.push_back(text.substr(prev, pos - prev));
             tokens.emplace_back(1, text[pos]);
         }
-        prev = pos+1;
+        prev = pos + 1;
     }
     if (prev < text.length()) tokens.push_back(text.substr(prev, std::string::npos));
 }

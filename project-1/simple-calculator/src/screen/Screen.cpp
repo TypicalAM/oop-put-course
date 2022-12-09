@@ -43,9 +43,7 @@ void Screen::Update() {
 
 void Screen::Draw() {
     // Draw the UI elements on the screen
-    for (auto button: buttons) {
-        button.Render();
-    }
+    for (auto button: buttons) button.Render();
 
     // Draw the textbox
     textbox.Render(!uiEnabled);

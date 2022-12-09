@@ -21,11 +21,11 @@ public:
 
     Rectangle Bounds();
 
-    explicit Textbox(std::string text);
-
     Textbox();
 
     void Render(bool isError);
+
+    explicit Textbox(std::string text);
 };
 
 

@@ -3,6 +3,7 @@
 //
 
 #include <string>
+
 #ifndef CLION_OPERATORTOKEN_H
 #define CLION_OPERATORTOKEN_H
 
@@ -15,7 +16,7 @@ class OperatorToken {
     std::string symbol;
     Associativity associativity;
 public:
-    int Compare(const OperatorToken& op) const;
+    int Compare(const OperatorToken &op) const;
 
     Associativity Association();
 

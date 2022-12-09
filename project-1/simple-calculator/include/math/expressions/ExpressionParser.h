@@ -15,7 +15,8 @@ private:
     std::vector<std::string> tokens;
 public:
     std::string RPN();
-    explicit ExpressionParser(const std::string& text);
+
+    explicit ExpressionParser(const std::string &text);
 };
 
 

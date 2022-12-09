@@ -13,9 +13,13 @@ class ExpressionTokens {
 private:
     std::vector<OperatorToken> supportedOps;
 public:
-    bool IsOperator(std::string& token);
-    OperatorToken FromString(const std::string& token);
+    bool IsOperator(std::string &token);
+
+    OperatorToken FromString(const std::string &token);
+
     ExpressionTokens();
+
+    std::string AllSymbols();
 };
 
 

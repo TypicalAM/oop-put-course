@@ -6,16 +6,18 @@
 #include "../../../include/math/expressions/ExpressionParseError.h"
 
 bool ExpressionTokens::IsOperator(std::string &token) {
-    for (OperatorToken op:supportedOps) if (token == op.Symbol()) return true;
+    for (OperatorToken op: supportedOps) if (token == op.Symbol()) return true;
     return false;
 }
 
-OperatorToken ExpressionTokens::FromString(const std::string& token) {
-    for (OperatorToken op:supportedOps) {
-        if (token== op.Symbol()) {
-            return op;
-        }
-    }
+std::string ExpressionTokens::AllSymbols() {
+    std::string output;
+    for (OperatorToken op: supportedOps) output.append(op.Symbol());
+    return output;
+}
+
+OperatorToken ExpressionTokens::FromString(const std::string &token) {
+    for (OperatorToken op: supportedOps) if (token == op.Symbol()) return op;
     throw ExpressionParseError("operators vector too narrow");
 }
 

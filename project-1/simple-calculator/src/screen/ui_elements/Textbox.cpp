@@ -3,14 +3,11 @@
 //
 
 #include "../../../include/screen/ui_elements/Textbox.h"
+#include "../../../include/screen/Screen.h"
 
 void Textbox::Render(bool isError) {
     DrawRectangleRec(rectangle, ORANGE);
-    if (isError) {
-        DrawText(text.c_str(), 20, 35, 20, RED);
-    } else {
-        DrawText(text.c_str(), 20, 35, 20, BLACK);
-    }
+    DrawText(text.c_str(), 20, 35, 1.5 * fontSize, ((isError) ? RED : BLACK));
 }
 
 Rectangle Textbox::Bounds() {
