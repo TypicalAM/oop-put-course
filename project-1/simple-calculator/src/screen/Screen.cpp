@@ -2,6 +2,7 @@
 // Created by adam on 12/6/22.
 //
 
+#include <iostream>
 #include "../../include/screen/Screen.h"
 #include "../../include/math/expressions/ExpressionParseError.h"
 
@@ -9,9 +10,9 @@ void Screen::Update() {
     // Update the state of the buttons
     for (auto &button: buttons) {
         // Check if the mouse is in the button
-        if (raylib::Mouse::GetPosition().CheckCollision(button.bounds())) {
+        if (CheckCollisionPointRec(GetMousePosition(), button.bounds())) {
             // Check if the left mouse button is down
-            if (raylib::Mouse::IsButtonDown(0) && uiEnabled) {
+            if (IsMouseButtonDown(0) && uiEnabled) {
                 if (button.state == HOVERED) {
                     try {
                         textbox = button.Click(textbox);
@@ -31,7 +32,7 @@ void Screen::Update() {
     }
 
     // Update the state of the textbox
-    textbox.state = raylib::Mouse::GetPosition().CheckCollision(textbox.Bounds()) ? HOVERED : DEFAULT;
+    textbox.state = (CheckCollisionPointRec(GetMousePosition(), textbox.Bounds())) ? HOVERED : DEFAULT;
 
     // Disable the UI if the textbox gives us an error
     if (!uiEnabled && !uiCoolDown--) {

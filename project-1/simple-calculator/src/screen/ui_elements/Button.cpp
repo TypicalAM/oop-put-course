@@ -38,35 +38,35 @@ void Button::Render() {
     // Draw the bounding rectangle
     switch (state) {
         case DEFAULT: {
-            rectangle.Draw(raylib::Color::Magenta());
+            DrawRectangleRec(rectangle, MAGENTA);
             break;
         }
         case HOVERED: {
-            rectangle.Draw(raylib::Color::Gray());
+            DrawRectangleRec(rectangle, GRAY);
             break;
         }
         case PRESSED: {
-            rectangle.Draw(raylib::Color::RayWhite());
+            DrawRectangleRec(rectangle, RAYWHITE);
             break;
         }
     }
 
 
     // Calculate the xPos and yPos of the text, so that it can be in the middle
-    int xPos = rectangle.GetX() + rectangle.GetWidth() / 2 - raylib::MeasureText(text, 16) / 2; // TODO: Define fontsize
-    int yPos = rectangle.GetY() + rectangle.GetHeight() / 2 - 16 / 2;
+    int xPos = rectangle.x + rectangle.width / 2 - MeasureText(text.c_str(), 16) / 2; // TODO: Define fontsize
+    int yPos = rectangle.y + rectangle.height / 2 - 16 / 2;
 
     // Draw the button text in the middle of the button
-    raylib::DrawText(text, xPos, yPos, 16, raylib::Color::Black());
+    DrawText(text.c_str(), xPos, yPos, 16, BLACK);
 }
 
 Button::Button(float xPos, float yPos, bool isBig, std::string text) {
     // Create the bounding box
     if (isBig) {
         // TODO: PREDEFINE SMALL HEIGHT AND HIG HEIGHT
-        rectangle = raylib::Rectangle(xPos, yPos, 51, 67);
+        rectangle = Rectangle {xPos, yPos, 51, 67 };
     } else {
-        rectangle = raylib::Rectangle(xPos, yPos, 51, 32);
+        rectangle = Rectangle {xPos, yPos, 51, 32 };
     }
 
     // Set the text variable
@@ -76,6 +76,6 @@ Button::Button(float xPos, float yPos, bool isBig, std::string text) {
     state = State::DEFAULT;
 }
 
-raylib::Rectangle Button::bounds() {
+Rectangle Button::bounds() {
     return rectangle;
 }

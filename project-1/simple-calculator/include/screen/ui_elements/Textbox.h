@@ -2,7 +2,8 @@
 // Created by adam on 12/7/22.
 //
 
-#include "raylib-cpp.hpp"
+#include <string>
+#include "raylib.h" // Rectangle
 #include "../State.h"
 
 #ifndef CLION_TEXTBOX_H
@@ -11,16 +12,14 @@
 
 class Textbox {
 private:
-    raylib::Rectangle rectangle;
+    Rectangle rectangle{};
     std::string text;
 public:
     State state;
 
-    void Render();
-
     std::string Text();
 
-    raylib::Rectangle Bounds();
+    Rectangle Bounds();
 
     explicit Textbox(std::string text);
 

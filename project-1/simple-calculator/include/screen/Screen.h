@@ -6,6 +6,7 @@
 #define CLION_SCREEN_H
 
 
+#include <vector>
 #include "ui_elements/Textbox.h"
 #include "ui_elements/Button.h"
 

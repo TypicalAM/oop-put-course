@@ -5,21 +5,21 @@
 #include "../../../include/screen/ui_elements/Textbox.h"
 
 void Textbox::Render(bool isError) {
-    rectangle.Draw(raylib::Color::Orange());
+    DrawRectangleRec(rectangle, ORANGE);
     if (isError) {
-        raylib::DrawText(text, 20, 35, 20, raylib::Color::Red());
+        DrawText(text.c_str(), 20, 35, 20, RED);
     } else {
-        raylib::DrawText(text, 20, 35, 20, raylib::Color::Black());
+        DrawText(text.c_str(), 20, 35, 20, BLACK);
     }
 }
 
-raylib::Rectangle Textbox::Bounds() {
+Rectangle Textbox::Bounds() {
     return rectangle;
 }
 
 Textbox::Textbox(std::string text) {
     // Create the bounding box
-    rectangle = raylib::Rectangle(0, 0, 315, 90);
+    rectangle = Rectangle{0, 0, 315, 90};
 
     // Set the current text
     this->text = std::move(text);
@@ -28,8 +28,8 @@ Textbox::Textbox(std::string text) {
     state = DEFAULT;
 }
 
-Textbox::Textbox() = default;
-
 std::string Textbox::Text() {
     return text;
 }
+
+Textbox::Textbox() {}

@@ -1,4 +1,4 @@
-#include "raylib-cpp.hpp"
+#include "raylib.h"
 #include "../State.h"
 #include "Textbox.h"
 
@@ -8,14 +8,14 @@
 
 class Button {
 private:
-    raylib::Rectangle rectangle;
+    Rectangle rectangle;
     std::string text;
 public:
     State state;
 
     void Render();
 
-    raylib::Rectangle bounds();
+    Rectangle bounds();
 
     explicit Button(float xPos, float yPos, bool isBig, std::string text);
 
