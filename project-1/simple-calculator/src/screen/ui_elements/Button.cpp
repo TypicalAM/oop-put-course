@@ -25,25 +25,25 @@ void Button::Render() {
     // Draw the bounding rectangle
     switch (state) {
         case DEFAULT: {
-            DrawRectangleRec(rectangle, MAGENTA);
+            DrawRectangleRec(rectangle, BUTTON_NORMAL_COLOR);
             break;
         }
         case HOVERED: {
-            DrawRectangleRec(rectangle, GRAY);
+            DrawRectangleRec(rectangle, BUTTON_HOVERED_COLOR);
             break;
         }
         case PRESSED: {
-            DrawRectangleRec(rectangle, RAYWHITE);
+            DrawRectangleRec(rectangle, BUTTON_PRESSED_COLOR);
             break;
         }
     }
 
     // Calculate the xPos and yPos of the text, so that it can be in the middle
-    int xPos = rectangle.x + rectangle.width / 2 - MeasureText(text.c_str(), fontSize) / 2;
-    int yPos = rectangle.y + rectangle.height / 2 - fontSize / 2;
+    int xPos = rectangle.x + rectangle.width / 2 - MeasureText(text.c_str(), FONTSIZE) / 2;
+    int yPos = rectangle.y + rectangle.height / 2 - FONTSIZE / 2;
 
     // Draw the button text in the middle of the button
-    DrawText(text.c_str(), xPos, yPos, 16, BLACK);
+    DrawText(text.c_str(), xPos, yPos, 16, TEXT_COLOR);
 }
 
 Button::Button(float xPos, float yPos, bool isBig, std::string text) {
@@ -51,7 +51,7 @@ Button::Button(float xPos, float yPos, bool isBig, std::string text) {
     this->text = std::move(text);
 
     // Create the bounding box
-    rectangle = Rectangle{xPos, yPos, 51, ((isBig) ? bigButtonHeight : smallButtonHeight)};
+    rectangle = Rectangle{xPos, yPos, 51, ((isBig) ? BIG_BUTTON_HEIGHT : SMALL_BUTTON_HEIGHT)};
 
     // Set the state of the button
     state = State::DEFAULT;

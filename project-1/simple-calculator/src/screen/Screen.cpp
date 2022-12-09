@@ -51,6 +51,9 @@ void Screen::Update() {
 }
 
 void Screen::Draw() {
+    // Draw the background
+    ClearBackground(BACKGROUND_COLOR);
+
     // Draw the UI elements on the screen
     for (auto button: buttons) button.Render();
 

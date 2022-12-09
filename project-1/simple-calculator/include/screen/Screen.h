@@ -11,9 +11,15 @@
 #include "ui_elements/Button.h"
 #include "../math/expressions/ExpressionTokens.h"
 
-const float fontSize = 16.0f;
-const float smallButtonHeight = 32;
-const float bigButtonHeight = 67;
+const float FONTSIZE = 16.0f;
+const float SMALL_BUTTON_HEIGHT = 32;
+const float BIG_BUTTON_HEIGHT = 67;
+
+const Color TEXT_COLOR{255, 255, 255, 255};
+const Color BACKGROUND_COLOR{34, 33, 49, 255};
+const Color BUTTON_NORMAL_COLOR{68, 68, 82, 255};
+const Color BUTTON_HOVERED_COLOR{100, 100, 114, 255};
+const Color BUTTON_PRESSED_COLOR{120, 120, 134, 255};
 
 class Screen {
 private:

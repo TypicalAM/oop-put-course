@@ -7,8 +7,8 @@
 #include "../../../include/math/expressions/ExpressionParser.h"
 
 void Textbox::Render(bool isError) {
-    DrawRectangleRec(rectangle, ORANGE);
-    DrawText(text.c_str(), 20, 35, 1.5 * fontSize, ((isError) ? RED : BLACK));
+    DrawRectangleRec(rectangle, BUTTON_NORMAL_COLOR);
+    DrawText(text.c_str(), 20, 40, 1.5 * FONTSIZE, ((isError) ? RED : TEXT_COLOR));
 }
 
 Rectangle Textbox::Bounds() {
@@ -38,7 +38,7 @@ Textbox Textbox::EqualsSign() {
 
 Textbox::Textbox(std::string text) {
     // Create the bounding box
-    rectangle = Rectangle{0, 0, 315, 90};
+    rectangle = Rectangle{0, 20, 315, 60};
 
     // Set the current text
     this->text = std::move(text);

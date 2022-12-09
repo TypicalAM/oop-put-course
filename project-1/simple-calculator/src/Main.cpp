@@ -6,7 +6,6 @@ int main() {
     Screen mainScreen;
     while (!WindowShouldClose()) {
         BeginDrawing();
-        ClearBackground(RAYWHITE);
         mainScreen.Update();
         mainScreen.Draw();
         EndDrawing();
