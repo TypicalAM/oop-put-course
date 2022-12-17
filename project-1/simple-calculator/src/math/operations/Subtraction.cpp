@@ -5,7 +5,7 @@
 #include "../../../include/math/operations/Subtraction.h"
 
 float Subtraction::Evaluate() {
-    return val1 - val2;
+    return val2 - val1;
 }
 
 Subtraction::Subtraction(float val1, float val2) {
