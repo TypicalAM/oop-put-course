@@ -2,7 +2,7 @@
 
 int main() {
     InitWindow(315, 330, "Calculator in raylib!");
-    SetTargetFPS(60);
+    SetTargetFPS(30);
     // TODO: Fix for relative paths
     Font mainFont = LoadFont("/home/adam/code/workspaces/clion/im-crying-rn/assets/product_sans.ttf");
     Screen mainScreen(mainFont);

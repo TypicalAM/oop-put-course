@@ -19,10 +19,10 @@ Textbox Button::Click(Textbox textbox) {
 	if (text == "BACK") return textbox.Backspace();
 
 	// Check if the input is numerical, if yes, add it to the output
-	if (text.find_first_not_of(".0123456789") == std::string::npos) {
-		return Textbox(textbox.Text() + text);
+	if (textbox.Text().length() == 1 && textbox.Text()[0] == '0' && text.find_first_not_of(".0123456789") == std::string::npos) {
+		return Textbox(text);
 	}
-	
+
 	// Perform the selected operation
 	return Textbox(textbox.Text() + text);
 }

@@ -9,6 +9,7 @@
 #include <valarray>
 #include "../../../include/math/expressions/ExpressionParser.h"
 #include "../../../include/math/expressions/ExpressionTokens.h"
+#include "../../../include/math/expressions/ExpressionParseError.h"
 
 ExpressionParser ExpressionParser::RPN() {
     // Parse the tokens vector into an expression in Reverse Polish Notation
@@ -109,11 +110,15 @@ std::string ExpressionParser::Evaluate() {
             }
         } else {
             printf("Pushign to the stack\n");
-            stk.push(std::stof(token));
+            try {
+                stk.push(std::stof(token));
+            } catch (std::invalid_argument err) {
+                throw ExpressionParseError("invalid number");
+            }
         }
     }
 
-    return std::to_string(stk.top());
+    return std::to_string(std::floor(stk.top()*100.0)/100.0);
 }
 
 ExpressionParser::ExpressionParser(std::vector<std::string> tokens) {

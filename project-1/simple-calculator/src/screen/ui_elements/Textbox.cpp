@@ -22,6 +22,7 @@ std::string Textbox::Text() {
 
 Textbox Textbox::Backspace() {
     if (text.length() == 0) return *this;
+    if (text.length() == 1) return Textbox("0");
 
     std::string expressionText = text;
     expressionText.pop_back();
@@ -29,7 +30,7 @@ Textbox Textbox::Backspace() {
 }
 
 Textbox Textbox::C() {
-    return Textbox("");
+    return Textbox("0");
 }
 
 Textbox Textbox::EqualsSign() {

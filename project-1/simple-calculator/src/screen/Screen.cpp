@@ -14,8 +14,14 @@ void Screen::Update() {
       // Check if the left mouse button is down
       if (IsMouseButtonDown(0) && uiEnabled) {
         if (button.state == HOVERED) {
-            // TODO: error handling
-            textbox = button.Click(textbox);
+            try {
+                textbox = button.Click(textbox);
+            } catch (ExpressionParseError epe) {
+                // Disable the UI if the textbox gives us an error
+                uiEnabled = false;
+                uiCoolDown = 45;
+                textbox = Textbox(epe.what());
+            }
         }
         button.state = PRESSED;
       } else {
@@ -31,10 +37,10 @@ void Screen::Update() {
                       ? HOVERED
                       : DEFAULT;
 
-  // Disable the UI if the textbox gives us an error
+  // Enable the UI if the cooldown has ended
   if (!uiEnabled && !uiCoolDown--) {
     uiEnabled = true;
-    textbox = Textbox("");
+    textbox = Textbox("0");
   }
 }
 
