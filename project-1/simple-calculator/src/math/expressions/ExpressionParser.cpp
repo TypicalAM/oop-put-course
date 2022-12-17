@@ -7,6 +7,8 @@
 #include <iostream>
 #include <utility>
 #include <valarray>
+#include <sstream>
+#include <iomanip>
 #include "../../../include/math/expressions/ExpressionParser.h"
 #include "../../../include/math/expressions/ExpressionTokens.h"
 #include "../../../include/math/expressions/ExpressionParseError.h"
@@ -86,39 +88,39 @@ ExpressionParser::ExpressionParser(const std::string &text) {
 }
 
 std::string ExpressionParser::Evaluate() {
-    // Take the tokenized expression and calculate it
     ExpressionTokens expr;
     std::string result;
+    std::stack<float> stack;
     float a,b;
-    printf("test\n");
-    printf("%zu\n", tokens.size());
-    std::stack<float> stk;
+
     for (auto token:tokens) {
         if (token.empty()) continue;
-        printf("Calculating for %s\n", token.c_str());
         if (expr.IsOperator(token)) {
-            a = stk.top();
-            stk.pop();
-            b = stk.top();
-            stk.pop();
+            if (stack.size() < 2 ) throw ExpressionParseError("invalid expression");
+            a = stack.top();
+            stack.pop();
+            b = stack.top();
+            stack.pop();
             if (token=="+") {
-                stk.push(a+b);
+                stack.push(a + b);
             } else if (token=="^") {
-                stk.push(std::pow(b,a));
+                stack.push(std::pow(b, a));
             } else if (token=="*") {
-                stk.push(a*b);
+                stack.push(a * b);
             }
         } else {
-            printf("Pushign to the stack\n");
             try {
-                stk.push(std::stof(token));
+                stack.push(std::stof(token));
             } catch (std::invalid_argument err) {
                 throw ExpressionParseError("invalid number");
             }
         }
     }
 
-    return std::to_string(std::floor(stk.top()*100.0)/100.0);
+    // Display up to two decimal places
+    std::stringstream stream;
+    stream << std::fixed << std::setprecision(2) << stack.top();
+    return stream.str();
 }
 
 ExpressionParser::ExpressionParser(std::vector<std::string> tokens) {
