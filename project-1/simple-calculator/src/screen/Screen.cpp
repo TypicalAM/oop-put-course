@@ -5,7 +5,6 @@
 #include "../../include/screen/Screen.h"
 #include "../../include/math/expressions/ExpressionParseError.h"
 #include "../../include/math/expressions/ExpressionTokens.h"
-#include <iostream>
 
 void Screen::Update() {
   // Update the state of the buttons
@@ -51,27 +50,25 @@ void Screen::Draw() {
   textbox.Render(!uiEnabled);
 }
 
-Screen::Screen() {
-  // Initialize the screen variables
-  const std::vector<std::string> buttonTexts = {
-      "÷", "x",   "-", "BACK", "C", "7", "8", "9", "+", "OR", "4", "5", "6",
-      "√", "AND", "1", "2",    "3", "^", "(", "0", "0", ".",  "=", ")"};
+Screen::Screen(Font font) {
+    // Initialize the screen variables
+    const std::vector<std::string> buttonTexts = {
+            "/", "*", "-", "BACK", "C", "7", "8", "9", "+", "OR", "4", "5", "6",
+            "√", "AND", "1", "2", "3", "^", "(", "0", "0", ".",  "=", ")"};
 
-  // Initialize all ui_elements and append them to the ui_elements vector
-  int counter = 0;
-  for (int rows = 0; rows < 5; rows++) {
-    for (int cols = 0; cols < 5; cols++) {
-      Button newButton(10 + cols * 61, 110 + rows * 42, false,
-                       buttonTexts[counter]);
-      buttons.push_back(newButton);
-      counter++;
+    // Initialize all ui_elements and append them to the ui_elements vector
+    int counter = 0;
+    for (int rows = 0; rows < 5; rows++) {
+        for (int cols = 0; cols < 5; cols++) {
+            buttons.emplace_back(font, 10 + cols * 61, 110 + rows * 42, false,buttonTexts[counter]);
+            counter++;
+        }
     }
-  }
 
-  // Enable the UI and the UI cooldown in case the user produces a parser error
-  this->uiEnabled = true;
-  this->uiCoolDown = 45;
+    // Enable the UI and the UI cooldown in case the user produces a parser error
+    this->uiEnabled = true;
+    this->uiCoolDown = 45;
 
-  // Create the textbox
-  this->textbox = Textbox("2+5x10");
+    // Create the textbox
+    this->textbox = Textbox("2+5x10");
 }

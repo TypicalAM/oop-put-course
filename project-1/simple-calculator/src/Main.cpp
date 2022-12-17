@@ -1,14 +1,11 @@
 #include "../include/screen/Screen.h"
-#include "../include/math/expressions/ExpressionParser.h"
 
 int main() {
-    //ExpressionParser tokens = ExpressionParser("(10+15)*2").RPN();
-   // printf("%s\n", tokens.Evaluate().c_str());
- //   return 0;
-
-    InitWindow(315, 330, "My own calculator");
+    InitWindow(315, 330, "Calculator in raylib!");
     SetTargetFPS(60);
-    Screen mainScreen;
+    // TODO: Fix for relative paths
+    Font mainFont = LoadFont("/home/adam/code/workspaces/clion/im-crying-rn/assets/product_sans.ttf");
+    Screen mainScreen(mainFont);
     while (!WindowShouldClose()) {
         BeginDrawing();
         mainScreen.Update();

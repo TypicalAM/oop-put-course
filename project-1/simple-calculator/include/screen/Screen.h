@@ -33,7 +33,7 @@ public:
 
     void Draw();
 
-    Screen();
+    explicit Screen(Font font);
 };
 
 

@@ -10,6 +10,7 @@ class Button {
 private:
     Rectangle rectangle{};
     std::string text;
+    Font font;
 public:
     State state;
 
@@ -19,7 +20,7 @@ public:
 
     Textbox Click(Textbox textbox);
 
-    explicit Button(float xPos, float yPos, bool isBig, std::string text);
+    explicit Button(Font font, float xPos, float yPos, bool isBig, std::string text);
 };
 
 

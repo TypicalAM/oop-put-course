@@ -49,12 +49,15 @@ void Button::Render() {
     int yPos = rectangle.y + rectangle.height / 2 - FONTSIZE / 2;
 
     // Draw the button text in the middle of the button
-    DrawText(text.c_str(), xPos, yPos, 16, TEXT_COLOR);
+    DrawTextEx(font, text.c_str(), Vector2{static_cast<float>(xPos), static_cast<float>(yPos)}, FONTSIZE*1.2, 0, TEXT_COLOR);
 }
 
-Button::Button(float xPos, float yPos, bool isBig, std::string text) {
+Button::Button(Font font, float xPos, float yPos, bool isBig, std::string text) {
     // Set the text variable
     this->text = std::move(text);
+
+    // Set the font
+    this->font = font;
 
     // Create the bounding box
     rectangle = Rectangle{xPos, yPos, 51, ((isBig) ? BIG_BUTTON_HEIGHT : SMALL_BUTTON_HEIGHT)};
