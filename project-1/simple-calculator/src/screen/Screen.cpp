@@ -16,7 +16,7 @@ void Screen::Update() {
             // Disable the UI if the textbox gives us an error
             uiEnabled = false;
             uiCoolDown = 45;
-            textbox = Textbox(epe.what());
+            textbox = Textbox(font, epe.what());
           }
         }
         button.state = PRESSED;
@@ -36,7 +36,7 @@ void Screen::Update() {
   // Enable the UI if the cooldown has ended
   if (!uiEnabled && !uiCoolDown--) {
     uiEnabled = true;
-    textbox = Textbox("0");
+    textbox = Textbox(font, "0");
   }
 }
 
@@ -62,8 +62,16 @@ Screen::Screen(Font font) {
   int counter = 0;
   for (int rows = 0; rows < 5; rows++) {
     for (int cols = 0; cols < 5; cols++) {
-      buttons.emplace_back(font, 10 + cols * 61, 110 + rows * 42, false,
-                           buttonTexts[counter]);
+      if (counter == 20) {
+        buttons.emplace_back(font, 10 + cols * 61, 110 + rows * 42, true,
+                             buttonTexts[counter]);
+      } else if (counter == 21) {
+        counter++;
+        continue;
+      } else {
+        buttons.emplace_back(font, 10 + cols * 61, 110 + rows * 42, false,
+                             buttonTexts[counter]);
+      }
       counter++;
     }
   }
@@ -72,6 +80,9 @@ Screen::Screen(Font font) {
   this->uiEnabled = true;
   this->uiCoolDown = 45;
 
+  // Set the font
+  this->font = font;
+
   // Create the textbox
-  this->textbox = Textbox("0");
+  this->textbox = Textbox(font, "0");
 }

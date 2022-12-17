@@ -7,8 +7,8 @@
 #include <vector>
 
 const float FONTSIZE = 16.0f;
-const float SMALL_BUTTON_HEIGHT = 32;
-const float BIG_BUTTON_HEIGHT = 67;
+const float SMALL_BUTTON_WIDTH = 51;
+const float BIG_BUTTON_WIDTH = 112;
 
 const Color TEXT_COLOR{255, 255, 255, 255};
 const Color BACKGROUND_COLOR{34, 33, 49, 255};
@@ -23,6 +23,7 @@ private:
   bool uiEnabled;
   int uiCoolDown;
   ExpressionTokens expr;
+  Font font;
 
 public:
   void Update();

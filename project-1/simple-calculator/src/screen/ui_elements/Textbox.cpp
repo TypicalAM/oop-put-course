@@ -4,8 +4,8 @@
 
 void Textbox::Render(bool isError) {
   DrawRectangleRec(rectangle, BUTTON_NORMAL_COLOR);
-  DrawText(text.c_str(), 20, 40, 1.5 * FONTSIZE,
-           ((isError) ? RED : TEXT_COLOR));
+  DrawTextEx(font, text.c_str(), Vector2{20, 35}, 2 * FONTSIZE, 2,
+             ((isError) ? RED : TEXT_COLOR));
 }
 
 Rectangle Textbox::Bounds() { return rectangle; }
@@ -16,7 +16,7 @@ Textbox Textbox::Backspace() {
   if (text.length() == 0)
     return *this;
   if (text.length() == 1)
-    return Textbox("0");
+    return Textbox(font, "0");
 
   std::string expressionText = text;
   switch (text[text.length() - 1]) {
@@ -36,24 +36,27 @@ Textbox Textbox::Backspace() {
     expressionText.pop_back();
     break;
   }
-  return Textbox(expressionText);
+  return Textbox(font, expressionText);
 }
 
-Textbox Textbox::C() { return Textbox("0"); }
+Textbox Textbox::C() { return Textbox(font, "0"); }
 
 Textbox Textbox::EqualsSign() {
-  return Textbox(ExpressionParser(text).RPN().Evaluate());
+  return Textbox(font, ExpressionParser(text).RPN().Evaluate());
 }
 
-Textbox::Textbox(std::string text) {
-  // Create the bounding box
-  rectangle = Rectangle{0, 20, 315, 60};
-
+Textbox::Textbox(Font font, std::string text) {
   // Set the current text
   this->text = std::move(text);
+
+  // Set the font
+  this->font = font;
+
+  // Create the bounding box
+  rectangle = Rectangle{0, 20, 315, 60};
 
   // Set the state of the button
   state = DEFAULT;
 }
 
-Textbox::Textbox() {}
+Textbox::Textbox() = default;

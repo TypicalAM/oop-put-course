@@ -19,11 +19,11 @@ Textbox Button::Click(Textbox textbox) {
 
   // Check if we are on the first character
   if (textbox.Text().length() == 1 && textbox.Text()[0] == '0') {
-    return Textbox(text);
+    return Textbox(font, text);
   }
 
   // Perform the selected operation
-  return Textbox(textbox.Text() + text);
+  return Textbox(font, textbox.Text() + text);
 }
 
 void Button::Render() {
@@ -44,14 +44,13 @@ void Button::Render() {
   }
 
   // Calculate the xPos and yPos of the text, so that it can be in the middle
-  int xPos = rectangle.x + rectangle.width / 2 -
-             MeasureText(text.c_str(), FONTSIZE) / 2;
-  int yPos = rectangle.y + rectangle.height / 2 - FONTSIZE / 2;
+  Vector2 textSize = MeasureTextEx(font, text.c_str(), FONTSIZE * 1.4, 0);
+  float xPos = rectangle.x + rectangle.width / 2 - textSize.x / 2;
+  float yPos = rectangle.y + rectangle.height / 2 - textSize.y / 2;
 
   // Draw the button text in the middle of the button
-  DrawTextEx(font, text.c_str(),
-             Vector2{static_cast<float>(xPos), static_cast<float>(yPos)},
-             FONTSIZE * 1.2, 0, TEXT_COLOR);
+  DrawTextEx(font, text.c_str(), Vector2{xPos, yPos}, FONTSIZE * 1.4, 0,
+             TEXT_COLOR);
 }
 
 Button::Button(Font font, float xPos, float yPos, bool isBig,
@@ -63,8 +62,8 @@ Button::Button(Font font, float xPos, float yPos, bool isBig,
   this->font = font;
 
   // Create the bounding box
-  rectangle = Rectangle{xPos, yPos, 51,
-                        ((isBig) ? BIG_BUTTON_HEIGHT : SMALL_BUTTON_HEIGHT)};
+  rectangle = Rectangle{xPos, yPos,
+                        ((isBig) ? BIG_BUTTON_WIDTH : SMALL_BUTTON_WIDTH), 32};
 
   // Set the state of the button
   state = State::DEFAULT;

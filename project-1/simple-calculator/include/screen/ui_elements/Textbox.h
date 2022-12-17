@@ -9,6 +9,7 @@ class Textbox {
 private:
   Rectangle rectangle{};
   std::string text;
+  Font font{};
 
 public:
   State state;
@@ -19,7 +20,7 @@ public:
   Textbox EqualsSign();
   Textbox();
   void Render(bool isError);
-  explicit Textbox(std::string text);
+  explicit Textbox(Font font, std::string text);
 };
 
 #endif // TEXTBOX_H
