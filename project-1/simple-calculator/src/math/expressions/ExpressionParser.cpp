@@ -54,13 +54,17 @@ ExpressionParser ExpressionParser::RPN() {
 
 ExpressionParser::ExpressionParser(const std::string &text) {
   // Set the text variable
-  this->text = text;
+  if (text.length() > 0 && text[0] == '-' && text[0] == '+') {
+    this->text = std::string("0.0").append(text);
+  } else {
+    this->text = text;
+  }
 
   // Split the text by mathematical symbols
   bool inDigit = true;
   std::string currentDigit;
   std::vector<std::string> newTokens;
-  for (char c : text) {
+  for (char c : this->text) {
     if (std::isdigit(c) || c == '.') {
       if (inDigit) {
         currentDigit.append(std::string(1, c));

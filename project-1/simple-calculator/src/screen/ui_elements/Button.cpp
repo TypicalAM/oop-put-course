@@ -17,9 +17,8 @@ Textbox Button::Click(Textbox textbox) {
   if (text == "BACK")
     return textbox.Backspace();
 
-  // Check if the input is numerical, if yes, add it to the output
-  if (textbox.Text().length() == 1 && textbox.Text()[0] == '0' &&
-      text.find_first_not_of(".0123456789") == std::string::npos) {
+  // Check if we are on the first character
+  if (textbox.Text().length() == 1 && textbox.Text()[0] == '0') {
     return Textbox(text);
   }
 
