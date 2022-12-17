@@ -1,15 +1,10 @@
-//
-// Created by adam on 12/6/22.
-//
+#ifndef SCREEN_H
+#define SCREEN_H
 
-#ifndef CLION_SCREEN_H
-#define CLION_SCREEN_H
-
-
-#include <vector>
-#include "ui_elements/Textbox.h"
-#include "ui_elements/Button.h"
 #include "../math/expressions/ExpressionTokens.h"
+#include "ui_elements/Button.h"
+#include "ui_elements/Textbox.h"
+#include <vector>
 
 const float FONTSIZE = 16.0f;
 const float SMALL_BUTTON_HEIGHT = 32;
@@ -23,18 +18,16 @@ const Color BUTTON_PRESSED_COLOR{120, 120, 134, 255};
 
 class Screen {
 private:
-    std::vector<Button> buttons;
-    Textbox textbox;
-    bool uiEnabled;
-    int uiCoolDown;
-    ExpressionTokens expr;
+  std::vector<Button> buttons;
+  Textbox textbox;
+  bool uiEnabled;
+  int uiCoolDown;
+  ExpressionTokens expr;
+
 public:
-    void Update();
-
-    void Draw();
-
-    explicit Screen(Font font);
+  void Update();
+  void Draw();
+  explicit Screen(Font font);
 };
 
-
-#endif //CLION_SCREEN_H
+#endif // SCREEN_H

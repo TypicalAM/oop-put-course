@@ -1,9 +1,9 @@
-#ifndef CLION_OPERATION_H
-#define CLION_OPERATION_H
+#ifndef OPERATION_H
+#define OPERATION_H
 
 class Operation {
 public:
-    virtual float Evaluate() = 0;
+  virtual float Evaluate() = 0;
 };
 
-#endif //CLION_OPERATION_H
+#endif // OPERATION_H

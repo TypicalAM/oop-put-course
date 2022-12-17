@@ -1,22 +1,16 @@
-//
-// Created by adam on 12/17/22.
-//
-
-#ifndef CLION_LOGICALAND_H
-#define CLION_LOGICALAND_H
-
+#ifndef LOGICAL_AND_H
+#define LOGICAL_AND_H
 
 #include "../Operation.h"
 
 class LogicalAND : public Operation {
 private:
-    float val1;
-    float val2;
-public:
-    float Evaluate() override;
+  float val1;
+  float val2;
 
-    LogicalAND(float val1, float val2);
+public:
+  float Evaluate() override;
+  LogicalAND(float val1, float val2);
 };
 
-
-#endif //CLION_LOGICALAND_H
+#endif // LOGICAL_AND_H

@@ -1,21 +1,15 @@
-//
-// Created by adam on 12/9/22.
-//
-
-#ifndef CLION_NUMERICTOKEN_H
-#define CLION_NUMERICTOKEN_H
-
+#ifndef NUMERIC_TOKEN_H
+#define NUMERIC_TOKEN_H
 
 #include <string>
 
 class NumericToken {
 private:
-    std::string symbol;
-public:
-    std::string Symbol();
+  std::string symbol;
 
-    explicit NumericToken(std::string symbol);
+public:
+  std::string Symbol();
+  explicit NumericToken(std::string symbol);
 };
 
-
-#endif //CLION_NUMERICTOKEN_H
+#endif // NUMERIC_TOKEN_H

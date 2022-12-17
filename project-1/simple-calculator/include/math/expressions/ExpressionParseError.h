@@ -1,21 +1,16 @@
-//
-// Created by adam on 12/8/22.
-//
-
-#ifndef CLION_EXPRESSIONPARSEERROR_H
-#define CLION_EXPRESSIONPARSEERROR_H
-
+#ifndef EXPRESSION_PARSE_ERROR_H
+#define EXPRESSION_PARSE_ERROR_H
 
 #include <exception>
 #include <string>
 
 class ExpressionParseError : public std::exception {
 private:
-    char *message;
-public:
-    char *what();
+  char *message;
 
-    explicit ExpressionParseError(char *msg);
+public:
+  char *what();
+  explicit ExpressionParseError(char *msg);
 };
 
-#endif //CLION_EXPRESSIONPARSEERROR_H
+#endif // EXPRESSION_PARSE_ERROR_H

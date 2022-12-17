@@ -1,30 +1,22 @@
-//
-// Created by adam on 12/9/22.
-//
-
 #include <string>
 
-#ifndef CLION_OPERATORTOKEN_H
-#define CLION_OPERATORTOKEN_H
+#ifndef OPERATOR_TOKEN_H
+#define OPERATOR_TOKEN_H
 
-enum Associativity {
-    LEFT, RIGHT
-};
+enum Associativity { LEFT, RIGHT };
 
 class OperatorToken {
 private:
-    int precedence;
-    std::string symbol;
-    Associativity associativity;
+  int precedence;
+  std::string symbol;
+  Associativity associativity;
+
 public:
-    int Compare(const OperatorToken &op) const;
-
-    Associativity Association();
-
-    std::string Symbol();
-
-    OperatorToken(std::string symbol, Associativity associativity, int precedence);
+  int Compare(const OperatorToken &op) const;
+  Associativity Association();
+  std::string Symbol();
+  OperatorToken(std::string symbol, Associativity associativity,
+                int precedence);
 };
 
-
-#endif //CLION_OPERATORTOKEN_H
+#endif // OPERATOR_TOKEN_H

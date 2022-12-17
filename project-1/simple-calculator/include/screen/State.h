@@ -1,14 +1,10 @@
-//
-// Created by adam on 12/6/22.
-//
-
-#ifndef CLION_STATE_H
-#define CLION_STATE_H
+#ifndef STATE_H
+#define STATE_H
 
 enum State {
-    DEFAULT,
-    HOVERED,
-    PRESSED,
+  DEFAULT,
+  HOVERED,
+  PRESSED,
 };
 
-#endif //CLION_STATE_H
+#endif // STATE_H
