@@ -33,7 +33,7 @@ Textbox Textbox::C() {
 }
 
 Textbox Textbox::EqualsSign() {
-    return text.length() > 2 ? Textbox(ExpressionParser(text).RPN()) : *this;
+    return Textbox(ExpressionParser(text).RPN().Evaluate());
 }
 
 Textbox::Textbox(std::string text) {

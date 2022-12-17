@@ -13,8 +13,11 @@ class ExpressionParser {
 private:
     std::string text;
     std::vector<std::string> tokens;
+    explicit ExpressionParser(std::vector<std::string> tokens);
 public:
-    std::string RPN();
+    ExpressionParser RPN();
+
+    std::string Evaluate();
 
     explicit ExpressionParser(const std::string &text);
 };

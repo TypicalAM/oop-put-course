@@ -19,11 +19,7 @@ public:
 
     OperatorToken FromString(const std::string &token);
 
-    std::string AllSymbols();
-
     ExpressionTokens();
-
-    bool IsToken(char c);
 };
 
 
