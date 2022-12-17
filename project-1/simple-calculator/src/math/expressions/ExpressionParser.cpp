@@ -102,23 +102,17 @@ std::string ExpressionParser::Evaluate() {
     ExpressionTokens expr;
     std::string result;
     std::stack<float> stack;
-    float a,b;
+    float value1, value2;
 
     for (auto token:tokens) {
         if (token.empty()) continue;
         if (expr.IsOperator(token)) {
             if (stack.size() < 2 ) throw ExpressionParseError("invalid expression");
-            a = stack.top();
+            value1 = stack.top();
             stack.pop();
-            b = stack.top();
+            value2 = stack.top();
             stack.pop();
-            if (token=="+") {
-                stack.push(a + b);
-            } else if (token=="^") {
-                stack.push(std::pow(b, a));
-            } else if (token=="*") {
-                stack.push(a * b);
-            }
+            stack.push(expr.PerformOperation(value1, value2, token));
         } else {
             try {
                 stack.push(std::stof(token));
