@@ -60,7 +60,7 @@ Screen::Screen(Font font) {
     // Initialize the screen variables
     const std::vector<std::string> buttonTexts = {
             "/", "*", "-", "BACK", "C", "7", "8", "9", "+", "OR", "4", "5", "6",
-            "√", "AND", "1", "2", "3", "^", "(", "0", "0", ".",  "=", ")"};
+            "%", "AND", "1", "2", "3", "^", "(", "0", "0", ".",  "=", ")"};
 
     // Initialize all ui_elements and append them to the ui_elements vector
     int counter = 0;

@@ -25,7 +25,23 @@ Textbox Textbox::Backspace() {
     if (text.length() == 1) return Textbox("0");
 
     std::string expressionText = text;
-    expressionText.pop_back();
+    switch (text[text.length()-1]) {
+        case 'D':
+            // AND
+            expressionText.pop_back();
+            expressionText.pop_back();
+            expressionText.pop_back();
+            break;
+        case 'R':
+            // OR
+            expressionText.pop_back();
+            expressionText.pop_back();
+            break;
+        default:
+            // Default backspace
+            expressionText.pop_back();
+            break;
+    }
     return Textbox(expressionText);
 }
 

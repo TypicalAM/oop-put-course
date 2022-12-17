@@ -63,6 +63,7 @@ ExpressionParser::ExpressionParser(const std::string &text) {
     // Split the text by mathematical symbols
     bool inDigit = true;
     std::string currentDigit;
+    std::vector<std::string> newTokens;
     for (char c:text) {
         if (std::isdigit(c) || c=='.') {
             if (inDigit) {
@@ -73,17 +74,27 @@ ExpressionParser::ExpressionParser(const std::string &text) {
             }
         } else {
             if (inDigit) {
-                tokens.push_back(currentDigit);
-                tokens.emplace_back(1, c);
+                newTokens.push_back(currentDigit);
+                newTokens.emplace_back(1, c);
                 inDigit = false;
             } else {
-                tokens.emplace_back(1, c);
+                newTokens.emplace_back(1, c);
             }
         }
     }
 
     if (inDigit) {
-        tokens.push_back(currentDigit);
+        newTokens.push_back(currentDigit);
+    }
+
+    // Now add the new tokens, combining the letters like "O" and "R" into operations
+    for (auto token:newTokens) {
+        if (token == "O") tokens.emplace_back("OR");
+        else if (token == "R") continue;
+        else if (token == "A") tokens.emplace_back("AND");
+        else if (token == "N") continue;
+        else if (token == "D") continue;
+        else tokens.push_back(token);
     }
 }
 
